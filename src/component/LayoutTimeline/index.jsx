@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 
 const LayoutTimeline = (props) =>{
     return <>
-        <Flex w={'100vw'} bgColor={'whitesmoke'} flexDirection={'column'} >
+        <Flex w={'100%'} bgColor={'whitesmoke'} flexDirection={'column'}>
             {props.children}
         </Flex>
     </>

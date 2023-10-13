@@ -1,7 +1,7 @@
 import { Avatar, Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { BiShare, BiLike, BiComment } from "react-icons/bi";
 
-const PostCard = () => {
+const PostCard = (props) => {
     return <>
         <Box m={'5px 40px'} boxShadow={'lg'} p={'15px 35px'}>
             <Stack direction={"row"} align={'center'} spacing={'3'}>
@@ -10,7 +10,7 @@ const PostCard = () => {
                 <Text color={'blackAlpha.500'}>10 days ago</Text>
             </Stack>
             <Box w={'765px'} m={'15px 0'}>
-                <Text>Ini isi postingan</Text>
+                <Text>{props.text}</Text>
             </Box>
             <Flex justify={'space-evenly'} color={'blackAlpha.600'}>
                 <Stack direction={'row'} spacing={1} align={'center'}>

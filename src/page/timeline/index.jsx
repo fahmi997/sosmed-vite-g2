@@ -9,56 +9,41 @@ import AvatarNav from "../../component/AvatarNav";
 import SideNav from "../../component/SideNav";
 import PostCard from "../../component/PostCard";
 import PostInput from "../../component/PostInput";
-
+import FollowCard from "../../component/FollowCard";
+import { useSelector } from "react-redux";
 
 const TimelinePage = () => {
+    const globalPost = useSelector((state) => state.postReducer.post);
+    const showPosCard = () => {
+        if (globalPost.length > 0) {
+            return globalPost.map((post, idx) => {
+                if (idx > 0) return <PostCard key={post.id} text={post.capt} />
+            })
+        }
+    };
 
     return <>
         <LayoutTimeline>
             <Header>
                 <AvatarNav />
             </Header>
-            <Flex h={'90vh'} w={'100%'} mt={'80px'} overflowX={'hidden'}>
+            <Flex minH={'90vh'} w={'100%'} mt={'80px'} >
                 <Tabs display={'flex'} flex={'1'} variant={'unstyled'} colorScheme="orange">
                     <Flex flex={'1'} flexDirection={'row'}>
                         <SideNav/>
                         {/* POST */}
-                        <Flex ml={'380px'} boxShadow={'xl'} p={'10px 25px'} >
+                        <Box ml={'380px'} boxShadow={'xl'} p={'10px 25px'} flexDirection={'column'} w={'100%'}>
                             <TabPanels>
                                 <TabPanel p={'0'}>
                                     <PostInput/>
-                                    <PostCard />
-                                    
+                                    {/* <PostCard /> */}
+                                    {showPosCard()}
                                 </TabPanel>
                             </TabPanels>
-                        </Flex>
-
+                        </Box>
                     </Flex>
                 </Tabs>
-                {/* Who to follow */}
-                <Flex w={'500px'} justify={'center'}>
-                    <Flex w={'300px'} mt={'20px'} rounded={'md'} boxShadow={'lg'} position={'fixed'} p={'15px 20px'} bgColor={primaryColor} flexDirection={'column'}>
-                        <Heading size={'lg'} color={'white'}>Who to follow</Heading>
-                        <Flex bgColor={'white'} h={'60px'} w={'100%'} mt={'10px'} rounded={'lg'} boxShadow={'xl'} p={'10px'} align={'center'}>
-                            <Avatar size='sm' src='https://bit.ly/dan-abramov' />
-                            <Box overflow={'hidden'} mr={'10px'} ml={'15px'} w={'150px'} ><Text>Fahmi Ardiansyah</Text></Box>
-                            <IoPersonAdd size={'25px'} />
-                        </Flex>
-                        <Flex bgColor={'white'} h={'60px'} w={'100%'} mt={'10px'} rounded={'lg'} boxShadow={'xl'} p={'10px'} align={'center'}>
-                            <Avatar size='sm' src='https://bit.ly/dan-abramov' />
-                            <Box overflow={'hidden'} mr={'10px'} ml={'15px'} w={'150px'} ><Text>Fahmi Ardiansyah</Text></Box>
-                            <IoPersonAdd size={'25px'} />
-                        </Flex>
-                        <Flex bgColor={'white'} h={'60px'} w={'100%'} mt={'10px'} rounded={'lg'} boxShadow={'xl'} p={'10px'} align={'center'}>
-                            <Avatar size='sm' src='https://bit.ly/dan-abramov' />
-                            <Box overflow={'hidden'} mr={'10px'} ml={'15px'} w={'150px'} ><Text>Fahmi Ardiansyah</Text></Box>
-                            <IoPersonAdd size={'25px'} />
-                        </Flex>
-                        <Flex mt={'15px'} align={'center'} justify={'center'}>
-                            <Text color={'whiteAlpha.700'}>See more</Text>
-                        </Flex>
-                    </Flex>
-                </Flex>
+                <FollowCard/>
             </Flex>
         </LayoutTimeline>
     </>
