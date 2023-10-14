@@ -39,6 +39,16 @@ const TimelinePage = () => {
                                     {/* <PostCard /> */}
                                     {showPosCard()}
                                 </TabPanel>
+                                <TabPanel>
+                                    <Text>Notification</Text>
+                                </TabPanel>
+                                <TabPanel>
+                                    <Text>Message</Text>
+                                </TabPanel>
+                                <TabPanel>
+                                    <Text>Profile</Text>
+                                </TabPanel>
+                                
                             </TabPanels>
                         </Box>
                     </Flex>
