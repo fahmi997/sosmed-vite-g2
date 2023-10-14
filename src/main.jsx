@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
 import globalState from './redux/reducer/index.js'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={globalState}>
     <BrowserRouter>
       <ChakraProvider>
@@ -15,5 +15,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </ChakraProvider>
     </BrowserRouter>
   </Provider>
-
-)
+);
