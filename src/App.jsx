@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import TimelinePage from './page/timeline'
 import AuthPage from './page/Auth'
 
+
 function App() {
+  
 
   return (
     <>
       <AuthPage/>
+      <TimelinePage/>
     </>
   )
 }
