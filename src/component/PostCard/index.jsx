@@ -9,7 +9,7 @@ const PostCard = (props) => {
                 <Text as={'b'} fontSize={'20px'}>Fahmi Ardiansyah</Text>
                 <Text color={'blackAlpha.500'}>10 days ago</Text>
             </Stack>
-            <Box w={'765px'} m={'15px 0'}>
+            <Box w={'100%'} m={'15px 0'} border={'1px'} borderColor={'black'} wordBreak={'break-word'}>
                 <Text>{props.text}</Text>
             </Box>
             <Flex justify={'space-evenly'} color={'blackAlpha.600'}>
