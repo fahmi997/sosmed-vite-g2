@@ -46,7 +46,7 @@ const TimelinePage = () => {
                                 <TabPanel>
                                     <Text>Message</Text>
                                 </TabPanel>
-                                <TabPanel position={'absolute'}>
+                                <TabPanel>
                                     <UserProfile/>
                                 </TabPanel>
                                 

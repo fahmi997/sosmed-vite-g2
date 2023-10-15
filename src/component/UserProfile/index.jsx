@@ -1,15 +1,19 @@
-import { useState } from "react";
-
-import { Box, Flex, Text, Image, Button, Stack, Avatar, Tabs, Tab, TabList, TabPanel, TabPanels } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Button, Stack, Avatar, Tabs, Tab, TabList, TabPanel, TabPanels, Container } from "@chakra-ui/react";
 import { BiArrowBack, BiLike, BiComment, BiShare } from "react-icons/bi";
 import PostCard from "../PostCard";
+import { useSelector } from 'react-redux';
+
 
 
 const UserProfile = () => {
+
+  const posts = useSelector((state) => state.postReducer.post);
   
   return (
+
+    <Container maxW="2xl">
     
-      <Box position={'absolute'} display="flex" boxShadow={'xl'} p={'10px 25px'} w={'500px'} flexDirection={"column"}  bg="white" >
+      <Flex position={'absolute'} display="flex" boxShadow={'xl'} p={'10px 25px'} w={'700px'}flexDirection={"column"}  bg="white" >
         
         <Box display="flex" height="50" position="sticky" top="0" mt="2" bg="white" >
           <Box height="30" w="9" h="50" mr="5" >
@@ -44,7 +48,7 @@ const UserProfile = () => {
                 <Text fontSize={"small"}>2,345 Followers</Text>
             </Flex>
 
-            <Flex mt="7" mb="7" >
+            <Flex mt="7"  >
             <Tabs>
               <TabList >
                 <Tab>Posts</Tab>
@@ -54,7 +58,8 @@ const UserProfile = () => {
 
               <TabPanels mt={'5'}>
                 <TabPanel>
-                  <PostCard/>
+                  {posts.filter((post) => post.capt) // Filter post yang memiliki teks
+                  .map((post) => (<PostCard key={post.id} text={post.capt} />))}
                 </TabPanel>
 
                 <TabPanel mt={'5'}>
@@ -75,10 +80,11 @@ const UserProfile = () => {
 
         
 
-      </Box>
+      </Flex>
 
-    
+    </Container>  
   );
 };
 
 export default UserProfile;
+
