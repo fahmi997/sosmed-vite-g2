@@ -10,12 +10,8 @@ const UserProfile = () => {
   const posts = useSelector((state) => state.postReducer.post);
   
   return (
-
-    <Container maxW="2xl">
-    
-      <Flex position={'absolute'} display="flex" boxShadow={'xl'} p={'10px 25px'} w={'700px'}flexDirection={"column"}  bg="white" >
-        
-        <Box display="flex" height="50" position="sticky" top="0" mt="2" bg="white" >
+      <>
+        <Box display="flex" height="50" position="sticky" top="0" mt="2">
           <Box height="30" w="9" h="50" mr="5" >
             <BiArrowBack mx="auto" display="flex" />  
           </Box>
@@ -80,9 +76,9 @@ const UserProfile = () => {
 
         
 
-      </Flex>
-
-    </Container>  
+      
+    </>
+    
   );
 };
 
