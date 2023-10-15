@@ -42,6 +42,7 @@ const IniModalSignIn = (props) => {
   const [inAvatar, setInAvatar] = React.useState("");
   const [isVisible, setIsVisible] = React.useState(false);
   const [account, setAccount] = React.useState([]);
+  const [errorName, setErrorName] = React.useState(false)
 
   const isErrorNama = inName.length >= 30;
   const isErrorEmail = inEmail.length >= 30;
@@ -49,12 +50,13 @@ const IniModalSignIn = (props) => {
   // const {isOpen, onOpen, onClose} = useDisclosure()
 
   const onLogin = () => {
-    axios
-      .get(API_URL + `/account?username=${inName}&password=${inPass}`)
+    axios.get(API_URL + `/account?username=${inName}&password=${inPass}`)
       .then((response) => {
         if (!response.data.length||isErrorNama||isErrorPass) {
           alert("Akun salah. Mohon isi Dengan baik");
+          setErrorName(true)
         } else {
+          setErrorName(false)
           localStorage.setItem("SINI-BREE", JSON.stringify(response.data[0]));
           dispatch(loginAction(response.data[0]));
         }
@@ -63,6 +65,11 @@ const IniModalSignIn = (props) => {
         console.log(error);
       });
   };
+
+  React.useEffect(() => {
+    setErrorName(false);
+  }, [inName]);
+
 
   useEffect(() => {
     if (iniDataNama || (iniDataEmail && iniDataPassword)) {
@@ -118,7 +125,7 @@ const IniModalSignIn = (props) => {
             Sign in
           </FormLabel>
           <FormControl
-            isInvalid={isErrorNama || isErrorEmail}
+            isInvalid={errorName || isErrorEmail}
             isRequired
             width={"xl"}
             height={"ms"}
@@ -132,8 +139,8 @@ const IniModalSignIn = (props) => {
               }}
               height={"50px"}
             />
-            {isErrorNama||isErrorEmail ? (
-              <FormErrorMessage>Data is wrong.</FormErrorMessage>
+            {errorName||isErrorEmail ? (
+              <FormErrorMessage>Data wrong.</FormErrorMessage>
             ) : (
               inName||inEmail? "":
               <FormHelperText>Enter the username you've.</FormHelperText>

@@ -6,6 +6,20 @@
       "password": "qwerty",
       "avatar": "URL",
       "id": 1
+    },
+    {
+      "username": "admin12",
+      "email": "admin@mail.com",
+      "avatar": "/assets/Avatar/a.png",
+      "password": "qwerty",
+      "id": 2
+    },
+    {
+      "username": "admin123",
+      "email": "admin@mail.com",
+      "avatar": "/assets/Avatar/a.png",
+      "password": "qwerty",
+      "id": 3
     }
   ],
   "post": [

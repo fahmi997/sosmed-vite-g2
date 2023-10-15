@@ -42,6 +42,8 @@ const IniModal = (props) => {
   const handleNameChange = (e) => setInName(e.target.value);
   const handleEmailChange = (e) => setInEmail(e.target.value);
   const handlePasswordChange = (e) => setInPass(e.target.value);
+  const [errorName, setErrorName] = React.useState(false);
+  const [errorEmail, setErrorEmail] = React.useState(false);
 
   // const {isOpen, onOpen, onClose} = useDisclosure()
 
@@ -62,21 +64,32 @@ const IniModal = (props) => {
     getAccount();
   }, [inName, inEmail, inPass]);
 
-  const isErrorName =
-    account.findIndex((val) => val.username == inName) >= 0 ||
-    inName.length >= 30;
-  const isErrorEmail =
-    account.findIndex((val) => val.email == inEmail) >= 0 ||
-    inEmail.length >= 30;
+  const isErrorName = !inName.length >= 3 || inName.length >= 30;
+  const isErrorEmail = inEmail.length >= 30;
   const isErrorPass = inPass.length >= 20;
 
+  React.useEffect(() => {
+    setErrorName(false);
+  }, [inName]);
+
+  React.useEffect(() => {
+    setErrorEmail(false);
+  }, [inEmail]);
+
   const onSave = () => {
+    setErrorName(account.findIndex((val) => val.username == inName) >= 0) ||
+      inName.length === 0;
+    setErrorEmail(account.findIndex((val) => val.email == inEmail) >= 0) ||
+      inEmail.length === 0;
+
     if (
       inName &&
       inEmail &&
       inPass &&
-      !isErrorName &&
-      !isErrorEmail &&
+      !errorName &&
+      !errorEmail &&
+      setErrorName(account.findIndex((val) => val.username == inName) >= 0) &&
+      setErrorEmail(account.findIndex((val) => val.email == inEmail) >= 0) &&
       !isErrorPass
     ) {
       props.onClose();
@@ -95,10 +108,20 @@ const IniModal = (props) => {
         .catch((error) => {
           console.log(error);
         });
-    } else if (isErrorName || isErrorEmail || isErrorPass) {
+    } else if (
+      errorName ||
+      errorEmail ||
+      isErrorPass ||
+      setErrorName(account.findIndex((val) => val.username == inName) >= 0) ||
+      setErrorEmail(account.findIndex((val) => val.email == inEmail) >= 0)
+    ) {
       alert("Form data not true");
-    } else {
+    } else if(!inName ||
+      !inEmail ||
+      !inPass){
       alert("Fill in all form data");
+    }else{
+      alert("Form data not true");
     }
   };
 
@@ -143,14 +166,14 @@ const IniModal = (props) => {
             Create account
           </FormLabel>
           <FormControl
-            isInvalid={isErrorName}
+            isInvalid={errorName || isErrorName}
             isRequired
             width={"xl"}
             height={"ms"}
           >
             <FormLabel>Username</FormLabel>
             <Input type="text" onChange={handleNameChange} height={"50px"} />
-            {isErrorName ? (
+            {errorName || isErrorName ? (
               inName.length >= 30 ? (
                 <FormErrorMessage>Username is over.</FormErrorMessage>
               ) : (
@@ -160,20 +183,19 @@ const IniModal = (props) => {
               ""
             ) : (
               <FormHelperText>
-                {" "}
                 Enter the username you'd like to use.
               </FormHelperText>
             )}
           </FormControl>
           <FormControl
-            isInvalid={isErrorEmail}
+            isInvalid={errorEmail || isErrorEmail}
             isRequired
             width={"xl"}
             height={"ms"}
           >
             <FormLabel>Email</FormLabel>
             <Input onChange={handleEmailChange} height={"50px"} type="email" />
-            {isErrorEmail ? (
+            {errorEmail || isErrorEmail ? (
               inEmail.length >= 30 ? (
                 <FormErrorMessage>Email is over.</FormErrorMessage>
               ) : (
