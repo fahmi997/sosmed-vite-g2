@@ -15,13 +15,6 @@ const PostInput = () => {
     useEffect(() => {console.log(globalState);},[globalState, lastid])
 
     const onPost = () => {
-        // console.log(lastid);
-        // console.log(globalState);
-        // dispatch(testPost(inPostText));
-        // if (inPostText.length > 0) {
-        //     dispatch(addPost(inPostText));
-        //     setInPostText('');
-        // }
         if (inPostText.length > 0) {
             dispatch(addPost({
                 capt: inPostText,

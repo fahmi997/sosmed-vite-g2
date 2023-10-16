@@ -3,7 +3,7 @@ import { BiShare, BiLike, BiComment } from "react-icons/bi";
 
 const PostCard = (props) => {
     return <>
-        <Box m={'5px 40px'} boxShadow={'lg'} p={'15px 35px'}>
+        <Box m={'5px 40px'} boxShadow={'lg'} p={'15px 35px'} minWidth={'500px'}>
             <Stack direction={"row"} align={'center'} spacing={'3'}>
                 <Avatar size='md' src='https://bit.ly/dan-abramov' />
                 <Text as={'b'} fontSize={'20px'}>Fahmi Ardiansyah</Text>

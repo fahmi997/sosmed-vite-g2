@@ -11,6 +11,7 @@ import PostCard from "../../component/PostCard";
 import PostInput from "../../component/PostInput";
 import FollowCard from "../../component/FollowCard";
 import { useSelector } from "react-redux";
+import UserProfile from "../../component/UserProfile";
 
 const TimelinePage = () => {
     const globalPost = useSelector((state) => state.postReducer.post);
@@ -34,11 +35,21 @@ const TimelinePage = () => {
                         {/* POST */}
                         <Box ml={'380px'} boxShadow={'xl'} p={'10px 25px'} flexDirection={'column'} w={'100%'}>
                             <TabPanels>
-                                <TabPanel p={'0'}>
+                                <TabPanel p={'0'}  >
                                     <PostInput/>
                                     {/* <PostCard /> */}
                                     {showPosCard()}
                                 </TabPanel>
+                                <TabPanel>
+                                    <Text>Notification</Text>
+                                </TabPanel>
+                                <TabPanel>
+                                    <Text>Message</Text>
+                                </TabPanel>
+                                <TabPanel>
+                                    <UserProfile/>
+                                </TabPanel>
+                                
                             </TabPanels>
                         </Box>
                     </Flex>
